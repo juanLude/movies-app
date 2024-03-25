@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // it will utilise our http.apapter.ts
 
 import axios, {AxiosInstance} from 'axios';
@@ -15,12 +16,10 @@ export class AxiosAdapter implements HttpAdapter {
       params: options.params,
     });
   }
-  async get<T>(
-    url: string,
-    options?: Record<string, unknown> | undefined,
-  ): Promise<T> {
+  async get<T>(url: string, options?: Record<string, unknown>): Promise<T> {
     try {
-      const response = await this.axiosInstance.get<T>(url);
+      const {data} = await this.axiosInstance.get<T>(url);
+      return data;
     } catch (error) {
       throw new Error(`Error fetching get: ${url}`);
     }
