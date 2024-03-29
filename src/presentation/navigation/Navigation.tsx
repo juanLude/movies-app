@@ -7,6 +7,7 @@ export type RootStackParams = {
   Home: undefined;
   Details: {movieId: number};
 };
+
 const Stack = createStackNavigator<RootStackParams>();
 export const Navigation = () => {
   return (
