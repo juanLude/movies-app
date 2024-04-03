@@ -7,13 +7,17 @@ import {
   View,
   useWindowDimensions,
 } from 'react-native';
-import {FullMovie} from '../../../../core/entities/movie.entity';
+
 import {useNavigation} from '@react-navigation/native';
 
 interface Props {
-  movie: FullMovie;
+  // movie: FullMovie;
+  poster: string;
+  originalTitle: string;
+  title: string;
 }
-export const MovieHeader = ({movie}: Props) => {
+
+export const MovieHeader = ({poster, originalTitle, title}: Props) => {
   const {height: screenHeight} = useWindowDimensions();
   const navigation = useNavigation();
 
@@ -21,20 +25,19 @@ export const MovieHeader = ({movie}: Props) => {
     <>
       <View style={{...styles.imageContainer, height: screenHeight * 0.7}}>
         <View style={styles.imageBorder}>
-          <Image source={{uri: movie.poster}} />
+          <Image style={styles.posterImage} source={{uri: poster}} />
         </View>
-        <View style={styles.marginContainer}>
-          <Text style={styles.subTitle}>{movie.originalTitle}</Text>
-          <Text style={styles.title}>{movie.title}</Text>
-        </View>
-        <View style={styles.backButton}>
-          <Pressable
-            onPress={() => {
-              navigation.goBack();
-            }}>
-            <Text>Return</Text>
-          </Pressable>
-        </View>
+      </View>
+
+      <View style={styles.marginContainer}>
+        <Text style={styles.subTitle}>{originalTitle}</Text>
+        <Text style={styles.title}>{title}</Text>
+      </View>
+
+      <View style={styles.backButton}>
+        <Pressable onPress={() => navigation.goBack()}>
+          <Text style={styles.backButtonText}>Regresar</Text>
+        </Pressable>
       </View>
     </>
   );
@@ -73,10 +76,12 @@ const styles = StyleSheet.create({
   subTitle: {
     fontSize: 16,
     opacity: 0.8,
+    color: 'black',
   },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
+    color: 'black',
   },
   backButton: {
     position: 'absolute',

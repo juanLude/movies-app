@@ -13,15 +13,23 @@ interface Props extends StackScreenProps<RootStackParams, 'Details'> {}
 
 export const DetailsScreen = ({route}: Props) => {
   const {movieId} = route.params;
-  // console.log({movieId});
+  // const { movieId } = useRoute().params;
   const {isLoading, movie, cast = []} = useMovie(movieId);
 
-  if (isLoading) return <FullScreenLoader />;
+  if (isLoading) {
+    return <FullScreenLoader />;
+  }
+
   return (
     <ScrollView>
-      {/* header */}
-      <MovieHeader movie={movie!} />
-      {/* details */}
+      {/* Header */}
+      <MovieHeader
+        originalTitle={movie!.originalTitle}
+        title={movie!.title}
+        poster={movie!.poster}
+      />
+
+      {/* Details */}
       <MovieDetails movie={movie!} cast={cast} />
     </ScrollView>
   );

@@ -1,4 +1,4 @@
-import React from 'react';
+/* eslint-disable react/react-in-jsx-scope */
 import {createStackNavigator} from '@react-navigation/stack';
 import {HomeScreen} from '../screens/home/HomeScreen';
 import {DetailsScreen} from '../screens/details/DetailsScreen';
@@ -9,6 +9,7 @@ export type RootStackParams = {
 };
 
 const Stack = createStackNavigator<RootStackParams>();
+
 export const Navigation = () => {
   return (
     <Stack.Navigator
